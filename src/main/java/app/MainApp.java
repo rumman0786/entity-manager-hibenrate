@@ -1,11 +1,11 @@
 package app;
 
+import model.AuthUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import utils.JPAUtil;
 
 import javax.persistence.EntityManager;
-import java.util.List;
 
 /**
  * @author therap
@@ -22,14 +22,16 @@ public class MainApp {
         EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
         em.getTransaction().begin();
 
-        // Check database version
-        String sql = "SELECT message FROM log_data";
+        AuthUser authUser = new AuthUser();
+        authUser.setFirstName("Rumman");
+        authUser.setLastName("Ashraf");
 
         logger.info("[MainApp::main] executing query");
 
-        List<String> result = (List<String>) em.createNativeQuery(sql, String.class).getResultList();
+        em.persist(authUser);
+        em.flush();
 
-        logger.info("[MainApp::main] postgres version {}", result.get(0));
+        logger.info("[MainApp::main] postgres version {}", authUser.getId());
 
         em.getTransaction().commit();
         em.close();
