@@ -8,9 +8,6 @@ apply plugin: 'war'
 apply plugin: 'idea'
 mainClassName = "main.Main"
 
-//sourceSets.main.output.resourcesDir = sourceSets.main.output.classesDir
-//sourceCompatibility = '1.6'
-//[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 if (!hasProperty('mainClass')) {
     ext.mainClass = 'main.Main'
 }
@@ -20,38 +17,26 @@ repositories {
     jcenter()
 }
 
-/// will create a zip inside /build/distributions directory
-task zip (type: Zip, group: "Archive", description: "Test of archived zip") {
-//    destinationDir new File('build', 'archives')
-//    archiveName 'project.zip'
-    from "src/main/java"
-}
-
-task copy (type: Copy, group: "Custom", description: "Copy Directory Test") {
-    from "src/main/java"
-    into "dest"
-}
-
 dependencies {
 
     ext {
         logbackVersion = '1.2.3'
-        slf4jVersion ='1.7.25'
+        slf4jVersion = '1.7.25'
+        hibernateVersion = '5.0.7.Final'
     }
 
     // https://mvnrepository.com/artifact/javax.persistence/persistence-api
     compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.0.7.Final'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.0.7.Final'
-
-//    logging configs
-    compile group: 'org.slf4j', name: 'slf4j-api', version: ext.slf4jVersion
-    compile group: 'ch.qos.logback', name: 'logback-core', version: ext.logbackVersion
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: ext.logbackVersion
+    compile group: 'org.hibernate', name: 'hibernate-core', version: ext.hibernateVersion
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: ext.hibernateVersion
 
     // https://mvnrepository.com/artifact/postgresql/postgresql
     compile group: 'postgresql', name: 'postgresql', version: '9.1-901-1.jdbc4'
 
+    // Logger configs
+    compile group: 'org.slf4j', name: 'slf4j-api', version: ext.slf4jVersion
+    compile group: 'ch.qos.logback', name: 'logback-core', version: ext.logbackVersion
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: ext.logbackVersion
 }

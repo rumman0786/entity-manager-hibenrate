@@ -8,7 +8,7 @@ import utils.JPAUtil;
 import javax.persistence.EntityManager;
 
 /**
- * @author therap
+ * @author rumman
  * @since 6/2/18.
  */
 public class MainApp {
