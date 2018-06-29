@@ -29,7 +29,6 @@ dependencies {
     compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
 
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
-    compile group: 'org.hibernate', name: 'hibernate-core', version: ext.hibernateVersion
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: ext.hibernateVersion
 
     // https://mvnrepository.com/artifact/postgresql/postgresql
