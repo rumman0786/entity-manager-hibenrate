@@ -1,0 +1,42 @@
+<configuration scan="true" scanPeriod="10 seconds">
+
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{dd MMM yyyy HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <property name="LOG_DIR" value="/tmp"/>
+
+    <appender name="FILE_HIBERNATE" class="ch.qos.logback.core.FileAppender">
+        <file>hibernate_sql.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date{dd MMM yyyy HH:mm:ss} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="FILE_APPLICATION" class="ch.qos.logback.core.FileAppender">
+        <file>application.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%date{dd MMM yyyy HH:mm:ss} [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="FILE_APPLICATION" />
+    </root>
+
+    <logger name="org.hibernate.SQL" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE_HIBERNATE" />
+    </logger>
+
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE_HIBERNATE" />
+    </logger>
+
+</configuration>
