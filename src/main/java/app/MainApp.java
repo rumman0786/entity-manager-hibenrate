@@ -25,6 +25,7 @@ public class MainApp {
         AuthUser authUser = new AuthUser();
         authUser.setFirstName("Rumman");
         authUser.setLastName("Ashraf");
+        authUser.setDivision("Rajshahi");
 
         logger.info("[MainApp::main] executing query");
 
