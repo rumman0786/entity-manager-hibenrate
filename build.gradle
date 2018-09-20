@@ -25,11 +25,10 @@ dependencies {
         hibernateVersion = '5.0.7.Final'
     }
 
-    // https://mvnrepository.com/artifact/javax.persistence/persistence-api
-    compile group: 'javax.persistence', name: 'persistence-api', version: '1.0'
-    // https://mvnrepository.com/artifact/javax.validation/validation-api
-    compile group: 'javax.validation', name: 'validation-api', version: '1.0.0.GA'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.2.Final'
 
+    // https://mvnrepository.com/artifact/javax.validation/validation-api
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.0.Final'
 
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: ext.hibernateVersion

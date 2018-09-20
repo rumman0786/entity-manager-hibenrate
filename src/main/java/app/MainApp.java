@@ -1,11 +1,7 @@
 package app;
 
-import model.AuthUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import utils.JPAUtil;
-
-import javax.persistence.EntityManager;
 
 /**
  * @author rumman
@@ -19,26 +15,14 @@ public class MainApp {
 
         logger.info("[MainApp::main] started");
 
-        EntityManager em = JPAUtil.getEntityManagerFactory().createEntityManager();
-        em.getTransaction().begin();
-
-        AuthUser authUser = new AuthUser();
-        authUser.setFirstName("Rumman");
-        authUser.setLastName("Ashraf");
-        authUser.setDivision("Rajshahi");
-
-        logger.info("[MainApp::main] executing query");
-
-        em.persist(authUser);
-        em.flush();
-
-        logger.info("[MainApp::main] postgres version {}", authUser.getId());
-
-        em.getTransaction().commit();
-        em.close();
-
-        JPAUtil.shutdown();
+        MainApp mainApp = new MainApp();
+        mainApp.appRunner();
 
         logger.info("[MainApp::main] finished");
+    }
+
+    public void appRunner() {
+        Driver driver = new Driver();
+        driver.orderColumnTest();
     }
 }

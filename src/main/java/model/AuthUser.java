@@ -2,10 +2,7 @@ package model;
 
 import validator.annotation.ValidDivision;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -30,6 +27,9 @@ public class AuthUser implements Serializable {
 
     @ValidDivision
     private String division;
+
+    @ManyToOne
+    private UserGroup group;
 
     public long getId() {
         return id;
@@ -61,5 +61,13 @@ public class AuthUser implements Serializable {
 
     public void setDivision(String division) {
         this.division = division;
+    }
+
+    public UserGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(UserGroup group) {
+        this.group = group;
     }
 }
